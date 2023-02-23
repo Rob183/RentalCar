@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System;
 using System.Runtime.ConstrainedExecution;
+using RentalCar.Models;
 
 namespace RentalCar;
 
@@ -84,7 +85,6 @@ class Program
         booking.Id = bookingId;
         bookingId++;
 
-        booking.
 
         return booking;
     }

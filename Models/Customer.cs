@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RentalCar
+namespace RentalCar.Models
 {
     internal class Customer
     {

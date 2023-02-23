@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RentalCar
+namespace RentalCar.Models
 {
     internal class Booking
     {
@@ -13,6 +13,6 @@ namespace RentalCar
         public Car Car { get; set; }
         public DateTime From { get; set; }
         public DateTime To { get; set; }
-        
+
     }
 }
