@@ -9,15 +9,17 @@ namespace RentalCar.Models
     public class Car
     {
         public int Id { get; set; }
-        public string Manufacturer { get; set; }
-        public string Model { get; set; }
+        public string? Manufacturer { get; set; }
+        public string? Model { get; set; }
 
-        public string DistanceKm { get; set; }
+        public bool Available { get; set; }
+        public int? DistanceKm { get; set; }
 
-
-        public override string ToString()
+        public Car(int id)
         {
-            return $"Id: {Id} , Hersteller: {Manufacturer}";
+            Id = id;
+            Available = true;
         }
+        public override string ToString() => $"Id: {Id}; Hersteller: {Manufacturer}; Model: {Model}; KM: {DistanceKm} ; Verfügbar: {Available}";
     }
 }
