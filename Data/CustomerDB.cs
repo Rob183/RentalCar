@@ -1,8 +1,11 @@
-﻿using Newtonsoft.Json;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
+using Newtonsoft.Json;
 using RentalCar.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,7 +26,23 @@ namespace RentalCar.Daten
             customer.Address = Console.ReadLine();
 
             customers.Add(customer);
+
+            AddToCloud(customer);
         }
+
+        private void AddToCloud(Customer customer)
+        {
+            // Verbindungszeichenfolge zur MongoDB Atlas-Datenbank -> Erstellen Sie eine Instanz des MongoClient -> Datenbank
+            var client = new MongoClient("mongodb+srv://RentalCar:DSoh8IQ54Elj2myr@cluster0.xmlqw5t.mongodb.net/?retryWrites=true&w=majority");
+            var database = client.GetDatabase("RentalCar");
+
+            // Wählen Sie die Sammlung aus
+            var collection = database.GetCollection<BsonDocument>("customers");
+
+            // Fügen Sie die Liste von Objekten in die MongoDB-Sammlung ein
+            collection.InsertOne(customer.ToBsonDocument());
+        }
+
         public void ChangeCustomer()
         {
             Console.WriteLine("Bitte Id des zu ändernden Gastes eingeben");
@@ -91,6 +110,31 @@ namespace RentalCar.Daten
         internal void AddCustomerToList(Customer customer)
         {
             customers.Add(customer);
+        }
+
+        internal void saveCloudData()
+        {
+            // Verbindungszeichenfolge zur MongoDB Atlas-Datenbank
+            string connectionString = "mongodb+srv://RentalCar:DSoh8IQ54Elj2myr@cluster0.xmlqw5t.mongodb.net/?retryWrites=true&w=majority";
+
+            // Erstellen Sie eine Instanz des MongoClient
+            var client = new MongoClient(connectionString);
+
+            // Wählen Sie die Datenbank aus
+            var database = client.GetDatabase("RentalCar");
+
+            // Wählen Sie die Sammlung aus
+            var collection = database.GetCollection<BsonDocument>("customers");
+
+            List<BsonDocument> bson = new List<BsonDocument>();
+            foreach (var item in customers)
+            {
+                BsonDocument bsonItem = item.ToBsonDocument();
+                bson.Add(bsonItem);
+            }
+
+            // Fügen Sie die Liste von Objekten in die MongoDB-Sammlung ein
+            collection.InsertMany(bson);
         }
     }
 }

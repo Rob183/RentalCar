@@ -5,8 +5,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
+using MongoDB.Driver;
+using MongoDB.Bson;
 
 namespace RentalCar.Daten
 {
@@ -24,6 +27,21 @@ namespace RentalCar.Daten
             Console.WriteLine("KM angeben..");
             car.DistanceKm = Convert.ToInt32(Console.ReadLine());
             cars.Add(car);
+
+            AddToClound(car);
+        }
+
+        private void AddToClound(Car car)
+        {
+            // Verbindungszeichenfolge zur MongoDB Atlas-Datenbank -> Erstellen Sie eine Instanz des MongoClient -> Datenbank
+            var client = new MongoClient("mongodb+srv://RentalCar:DSoh8IQ54Elj2myr@cluster0.xmlqw5t.mongodb.net/?retryWrites=true&w=majority");
+            var database = client.GetDatabase("RentalCar");
+
+            // Wählen Sie die Sammlung aus
+            var collection = database.GetCollection<BsonDocument>("cars");
+
+            // Fügen Sie die Liste von Objekten in die MongoDB-Sammlung ein
+            collection.InsertOne(car.ToBsonDocument());
         }
 
         public Car GetCar(int id)

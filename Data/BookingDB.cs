@@ -1,8 +1,11 @@
-﻿using Newtonsoft.Json;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
+using Newtonsoft.Json;
 using RentalCar.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -84,7 +87,22 @@ namespace RentalCar.Daten
             booking.Price = price;
             bookings.Add(booking);
 
+            AddToCloud(booking);
+
             return;
+        }
+
+        private void AddToCloud(Booking booking)
+        {
+            // Verbindungszeichenfolge zur MongoDB Atlas-Datenbank -> Erstellen Sie eine Instanz des MongoClient -> Datenbank
+            var client = new MongoClient("mongodb+srv://RentalCar:DSoh8IQ54Elj2myr@cluster0.xmlqw5t.mongodb.net/?retryWrites=true&w=majority");
+            var database = client.GetDatabase("RentalCar");
+
+            // Wählen Sie die Sammlung aus
+            var collection = database.GetCollection<BsonDocument>("bookings");
+
+            // Fügen Sie die Liste von Objekten in die MongoDB-Sammlung ein
+            collection.InsertOne(booking.ToBsonDocument());
         }
 
         public void ShowAllBookings()
