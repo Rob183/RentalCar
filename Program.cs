@@ -23,9 +23,10 @@ internal class Program
 
         //ReloadData();
         ReloadCloudData();
+        //tryConnection();
 
-        string input;
-        do
+        bool keepRunning = true;
+        while (keepRunning)
         {
             Console.WriteLine("Bitte wählen..");
             Console.WriteLine("1. Auto anlegen");
@@ -42,7 +43,7 @@ internal class Program
             Console.WriteLine("12. Vermietete Autos anzeigen");
             Console.WriteLine($"({exit}) Beenden");
 
-            input = Console.ReadLine();
+            string input = Console.ReadLine();
             switch (input)
             {
                 case "1":
@@ -109,13 +110,14 @@ internal class Program
                     //carDb.saveData();
                     //customerDb.saveData();
                     //bookingDB.saveData();
+                    keepRunning = false;
                     break;
 
                 default:
-                    Console.WriteLine("falsche Eingabe");
+                    Console.WriteLine("falsche Eingabe: " + input);
                     break;
             }
-        } while (input != exit);
+        };
 
         void ReloadData()
         {
@@ -205,7 +207,7 @@ internal class Program
         }
     }
 
-    /*private static void tryConnection()
+    private static void tryConnection()
     {
         string connectionString = "mongodb+srv://RentalCar:DSoh8IQ54Elj2myr@cluster0.xmlqw5t.mongodb.net/?retryWrites=true&w=majority";
 
@@ -229,5 +231,5 @@ internal class Program
             Console.WriteLine("Fehler beim Herstellen der Verbindung zur Datenbank:");
             Console.WriteLine(ex.Message);
         }
-    }*/
+    }
 }
