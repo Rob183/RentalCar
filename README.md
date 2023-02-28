@@ -21,11 +21,14 @@ Das Programm wird über die Konsole gestartet.
 
 Das Hauptmenü des Programms wird angezeigt. Von dort aus können Sie verschiedene Aktionen ausführen, 
 einschließlich der Anzeige verfügbarer Autos, der Buchungungen und Anziege der Kunden.
+Beim Starten des Programmes werden die Daten von einer externen NoSQL DB geladen.
+  <img src="./Docs/cmd.jpg" width="100%"/>
 
-Neue Einträge werden an eine externe NoSQL DB geliefert.
+
+
 <br>
 
-So könnte eine GUI aussehen.
+So könnte eine GUI aussehen:
   <img src="./Docs/gui.jpg" width="100%"/>
 
 
