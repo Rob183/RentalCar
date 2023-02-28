@@ -15,7 +15,7 @@ Als nächstes müssen Sie via Docker ein Image erstellen.
 
 Nun das zuletzt erstellte Image nehmen und..
 
-`docker run -it <8412731>` (<8412731> ersetzen und passende ID des Images eingeben)
+`docker run -it <bfe34>` (<bfe34> ersetzen und passende ID des Images eingeben)
 
 Das Programm wird über die Konsole gestartet.
 
