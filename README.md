@@ -5,7 +5,7 @@ Dies ist ein kleines Programm, zur Organisation eines Autoverleihs. Das Programm
 **Installation**
 Um das Programm zu installieren, müssen Sie zuerst das Repository klonen:
 
-`git clone https://github.com/[Benutzername]/autoverleih.git`
+`https://github.com/Rob183/RentalCar.git`
 
 `cd RentalCar`
 
@@ -23,8 +23,10 @@ Das Hauptmenü des Programms wird angezeigt. Von dort aus können Sie verschiedene
 einschließlich der Anzeige verfügbarer Autos, der Buchungungen und Anziege der Kunden.
 
 Neue Einträge werden an eine externe NoSQL DB geliefert.
+<br>
 
-  <img src="./Docs/gui.jpg" width="350"/>
+So könnte eine GUI aussehen.
+  <img src="./Docs/gui.jpg" width="100%"/>
 
 
 
