@@ -1,15 +1,15 @@
-# RentalCar - kleines Tool für die Verwaltung von einem Autoverleih
+# RentalCar - kleines Tool fÃ¼r die Verwaltung eines Autoverleihs
 
-Dies ist ein kleines Programm, zur Organisation eines Autoverleihs. Das Programm ermöglicht es Mitarbeitern , Autos und zu vermieten, sowie den die Verwaltung von Buchungen und Kunden.
+Dies ist ein kleines Programm, zur Organisation eines Autoverleihs. Das Programm ermÃ¶glicht es Mitarbeitern , Autos und zu vermieten, sowie den die Verwaltung von Buchungen und Kunden.
 
 **Installation**
-Um das Programm zu installieren, müssen Sie zuerst das Repository klonen:
+Um das Programm zu installieren, mÃ¼ssen Sie zuerst das Repository klonen:
 
 `https://github.com/Rob183/RentalCar.git`
 
 `cd RentalCar`
 
-Als nächstes müssen Sie via Docker ein Image erstellen.
+Als nÃ¤chstes mÃ¼ssen Sie via Docker ein Image erstellen.
 
 `docker build -t carsharing .`
 
@@ -17,10 +17,10 @@ Nun das zuletzt erstellte Image nehmen und..
 
 `docker run -it <8412731>` (<8412731> ersetzen und passende ID des Images eingeben)
 
-Das Programm wird über die Konsole gestartet.
+Das Programm wird Ã¼ber die Konsole gestartet.
 
-Das Hauptmenü des Programms wird angezeigt. Von dort aus können Sie verschiedene Aktionen ausführen, 
-einschließlich der Anzeige verfügbarer Autos, der Buchungungen und Anziege der Kunden.
+Das HauptmenÃ¼ des Programms wird angezeigt. Von dort aus kÃ¶nnen Sie verschiedene Aktionen ausfÃ¼hren, 
+einschlieÃŸlich der Anzeige verfÃ¼gbarer Autos, der Buchungungen und Anziege der Kunden.
 Beim Starten des Programmes werden die Daten von einer externen NoSQL DB geladen.
   <img src="./Docs/cmd.jpg" width="100%"/>
 
@@ -28,7 +28,7 @@ Beim Starten des Programmes werden die Daten von einer externen NoSQL DB geladen
 
 <br>
 
-So könnte eine GUI aussehen:
+So kÃ¶nnte eine GUI aussehen:
   <img src="./Docs/gui.jpg" width="100%"/>
 
 
