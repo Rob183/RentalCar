@@ -2,12 +2,6 @@
 using MongoDB.Driver;
 using Newtonsoft.Json;
 using RentalCar.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.ConstrainedExecution;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RentalCar.Daten
 {
@@ -15,7 +9,7 @@ namespace RentalCar.Daten
     {
         private List<Customer> customers = new List<Customer>();
 
-        public void AddCustomer()
+        internal void AddCustomer()
         {
             Customer customer = new Customer(GetAmountItems() + 1);
             Console.WriteLine("Vorname angeben...");
@@ -43,7 +37,7 @@ namespace RentalCar.Daten
             collection.InsertOne(customer.ToBsonDocument());
         }
 
-        public void ChangeCustomer()
+        internal void ChangeCustomer()
         {
             Console.WriteLine("Bitte Id des zu ändernden Gastes eingeben");
             int id = Convert.ToInt32(Console.ReadLine()); // Eingabe von string ID in int umwandeln
@@ -61,7 +55,7 @@ namespace RentalCar.Daten
             }
         }
 
-        public void ShowAllCustomers()
+        internal void ShowAllCustomers()
         {
             foreach (var item in customers)
             {
@@ -69,12 +63,9 @@ namespace RentalCar.Daten
             }
         }
 
-        public Customer GetCustomer(int id)
-        {
-            return customers[id];
-        }
+        internal Customer GetCustomer(int id) => customers[id];
 
-        public void DeleteCustomer()
+        internal void DeleteCustomer()
         {
             Console.WriteLine("Bitte Id des zu löschenden Kunden angeben");
             int id = Convert.ToInt32(Console.ReadLine()); // Eingabe von string ID in int umwandeln
@@ -87,7 +78,7 @@ namespace RentalCar.Daten
             }
         }
 
-        public bool CheckIfIdInRange(int id)
+        internal bool CheckIfIdInRange(int id)
         {
             if (id >= GetAmountItems() + 1) // checken ob keine zu hohe ID eingegeben wurde
             {
@@ -97,44 +88,16 @@ namespace RentalCar.Daten
             else { return true; }
         }
 
-        public int GetAmountItems() { return customers.Count; }
+        internal int GetAmountItems() { return customers.Count; }
 
-        public List<Customer> GetCustomers() { return customers; }
+        internal List<Customer> GetCustomers() { return customers; }
 
-        public void saveData()
-        {
-            string json = JsonConvert.SerializeObject(customers);
-            File.WriteAllText(@".\Customersdata.json", json);
-        }
+        internal void AddCustomerToList(Customer customer) => customers.Add(customer);
 
-        internal void AddCustomerToList(Customer customer)
-        {
-            customers.Add(customer);
-        }
-
-        internal void saveCloudData()
-        {
-            // Verbindungszeichenfolge zur MongoDB Atlas-Datenbank
-            string connectionString = "mongodb+srv://RentalCar:DSoh8IQ54Elj2myr@cluster0.xmlqw5t.mongodb.net/?retryWrites=true&w=majority";
-
-            // Erstellen Sie eine Instanz des MongoClient
-            var client = new MongoClient(connectionString);
-
-            // Wählen Sie die Datenbank aus
-            var database = client.GetDatabase("RentalCar");
-
-            // Wählen Sie die Sammlung aus
-            var collection = database.GetCollection<BsonDocument>("customers");
-
-            List<BsonDocument> bson = new List<BsonDocument>();
-            foreach (var item in customers)
-            {
-                BsonDocument bsonItem = item.ToBsonDocument();
-                bson.Add(bsonItem);
-            }
-
-            // Fügen Sie die Liste von Objekten in die MongoDB-Sammlung ein
-            collection.InsertMany(bson);
-        }
+        /*internal void saveData()
+      {
+          string json = JsonConvert.SerializeObject(customers);
+          File.WriteAllText(@".\Customersdata.json", json);
+      }*/
     }
 }

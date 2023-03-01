@@ -1,22 +1,13 @@
-﻿using System;
-using System.IO;
-using System.Text;
-using System.Runtime.ConstrainedExecution;
-using RentalCar.Models;
-using System.Collections.Generic;
-using Newtonsoft.Json;
-
-using System.Text.Json;
+﻿using MongoDB.Driver;
 using RentalCar.Daten;
-using MongoDB.Driver;
-using MongoDB.Bson;
+using RentalCar.Models;
 
 internal class Program
 {
     private static void Main(string[] args)
     {
         string exit = "exit";
-
+        // Neue Objekte für Auto,Kunden und BuchungsDatenbank
         CarDB carDb = new CarDB();
         CustomerDB customerDb = new CustomerDB();
         BookingDB bookingDB = new BookingDB();
@@ -119,7 +110,7 @@ internal class Program
             }
         };
 
-        void ReloadData()
+       /* void ReloadData()
         {
             try
             {
@@ -154,18 +145,16 @@ internal class Program
             {
                 Console.WriteLine("Fehler beim Laden der Daten: " + ex.Message);
             }
-        }
+        }*/
 
         void ReloadCloudData()
         {
             try
             {
-                string connectionString = "mongodb+srv://RentalCar:DSoh8IQ54Elj2myr@cluster0.xmlqw5t.mongodb.net/?retryWrites=true&w=majority";
-
                 // Erstellt eine Instanz des MongoClient
-                var client = new MongoClient(connectionString);
+                var client = new MongoClient("mongodb+srv://RentalCar:DSoh8IQ54Elj2myr@cluster0.xmlqw5t.mongodb.net/?retryWrites=true&w=majority");
 
-                // Datenbank aus
+                // Wahl der Datenbank
                 var database = client.GetDatabase("RentalCar");
 
                 // Sammlungen
@@ -207,7 +196,7 @@ internal class Program
         }
     }
 
-    private static void tryConnection()
+    /* private static void tryConnection()
     {
         string connectionString = "mongodb+srv://RentalCar:DSoh8IQ54Elj2myr@cluster0.xmlqw5t.mongodb.net/?retryWrites=true&w=majority";
 
@@ -231,5 +220,5 @@ internal class Program
             Console.WriteLine("Fehler beim Herstellen der Verbindung zur Datenbank:");
             Console.WriteLine(ex.Message);
         }
-    }
+    } */
 }

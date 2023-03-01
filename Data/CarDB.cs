@@ -1,15 +1,7 @@
-﻿using Newtonsoft.Json;
-using RentalCar.Models;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
-using System.Threading.Tasks.Dataflow;
+﻿using MongoDB.Bson;
 using MongoDB.Driver;
-using MongoDB.Bson;
+using Newtonsoft.Json;
+using RentalCar.Models;
 
 namespace RentalCar.Daten
 {
@@ -44,14 +36,11 @@ namespace RentalCar.Daten
             collection.InsertOne(car.ToBsonDocument());
         }
 
-        public Car GetCar(int id)
-        {
-            return cars[id];
-        }
+        internal Car GetCar(int id) => cars[id];
 
         internal int GetAmountItems() { return cars.Count; }
 
-        public List<Car> GetCars() { return cars; }
+        internal List<Car> GetCars() { return cars; }
 
         internal void DeleteCar()
         {
@@ -122,6 +111,4 @@ namespace RentalCar.Daten
             cars.Add(car);
         }
     }
-
-
 }

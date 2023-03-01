@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RentalCar.Models
+﻿namespace RentalCar.Models
 {
     internal class Customer
     {
@@ -14,12 +7,14 @@ namespace RentalCar.Models
         public string? LastName { get; set; }
         public string? Address { get; set; }
         public int AmountBookings { get; set; }
-
         public Customer(int id)
         {
             Id = id;
             AmountBookings = 0;
         }
-        public override string ToString() => $"Id: {Id}; Vorname: {FirstName}; Nachname: {LastName}; Adresse: {Address}";
+        public override string ToString() => $"Id: {Id};" +
+            System.Environment.NewLine + $" Vorname: {FirstName};" +
+            System.Environment.NewLine + $" Nachname: {LastName};" +
+            System.Environment.NewLine + $" Adresse: {Address}";
     }
 }

@@ -2,35 +2,22 @@
 using MongoDB.Driver;
 using Newtonsoft.Json;
 using RentalCar.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.ConstrainedExecution;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RentalCar.Daten
 {
     internal class BookingDB
     {
+        // Liste der Buchungen
         private List<Booking> bookings = new List<Booking>();
 
-        public int GetHighestID() { return bookings.Count + 1; }
+        internal int GetHighestID() { return bookings.Count + 1; }
 
-        public List<Booking> GetBookings() { return bookings; }
+        internal List<Booking> GetBookings() { return bookings; }
 
-        public Booking GetBooking(int id) { return bookings[id]; }
-        public void AddBookingToList(Booking booking)
-        {
-            bookings.Add(booking);
-        }
-        public void saveData()
-        {
-            string json = JsonConvert.SerializeObject(bookings);
-            File.WriteAllText(@".\Bookingdata.json", json);
-        }
+        internal Booking GetBooking(int id) { return bookings[id]; }
+        internal void AddBookingToList(Booking booking) => bookings.Add(booking);
 
-        public void CreateBooking(CustomerDB customerDb , CarDB carDb)
+        internal void CreateBooking(CustomerDB customerDb , CarDB carDb)
         {
             Booking booking = new Booking();
             booking.Id = GetHighestID();
@@ -105,7 +92,7 @@ namespace RentalCar.Daten
             collection.InsertOne(booking.ToBsonDocument());
         }
 
-        public void ShowAllBookings()
+        internal void ShowAllBookings()
         {
             foreach (var item in bookings)
             {
@@ -113,7 +100,7 @@ namespace RentalCar.Daten
             }
         }
 
-        bool CheckIfIdInRange(int id)
+        private bool CheckIfIdInRange(int id)
         {
             if (id >= GetAmountItems()) // checken ob keine zu hohe ID eingegeben wurde
             {
@@ -123,12 +110,12 @@ namespace RentalCar.Daten
             else { return true; }
         }
 
-        private int GetAmountItems()
+        internal int GetAmountItems()
         {
             return bookings.Count;
         }
 
-        public void FinishBooking()
+        internal void FinishBooking()
         {
             Console.WriteLine("Welche Buchung soll abgeschlossen werden? Bitte ID angeben!");
             int id = Convert.ToInt32(Console.ReadLine()); // Eingabe von string ID in int umwandeln
@@ -138,10 +125,10 @@ namespace RentalCar.Daten
                 var currentBooking = GetBooking(id - 1);
                 currentBooking.IsFinished = true;
 
-                Customer? currentCustomer = currentBooking.Customer;
+                Customer currentCustomer = currentBooking.Customer;
                 currentCustomer.AmountBookings++;
 
-                Car? currentCar = currentBooking.Car;
+                Car currentCar = currentBooking.Car;
                 currentCar.Available = true;
 
                 Console.WriteLine("Wie viele KM wurden gefahren?");
@@ -150,5 +137,10 @@ namespace RentalCar.Daten
                 currentCar.DistanceKm = currentCar.DistanceKm + km;
             }
         }
+        /*public void saveData()
+       {
+           string json = JsonConvert.SerializeObject(bookings);
+           File.WriteAllText(@".\Bookingdata.json", json);
+       }*/
     }
 }
