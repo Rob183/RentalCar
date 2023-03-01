@@ -13,7 +13,7 @@
         public bool Available { get; set; }
         public int? DistanceKm { get; set; }
         public override string ToString() => $"Id: {Id}; "+
-            System.Environment.NewLine + $"Hersteller: {Manufacturer};" +
+            System.Environment.NewLine + $" Hersteller: {Manufacturer};" +
             System.Environment.NewLine + $" Model: {Model};" +
             System.Environment.NewLine + $" KM: {DistanceKm} ; " +
             System.Environment.NewLine + $" Verfügbar: {Available}";
