@@ -1,6 +1,6 @@
 # RentalCar - kleines Tool für die Verwaltung eines Autoverleihs
 
-Dies ist ein kleines Programm, zur Organisation eines Autoverleihs. Das Programm ermöglicht es Mitarbeitern , Autos und zu vermieten, sowie den die Verwaltung von Buchungen und Kunden.
+Dies ist ein kleines Programm, zur Organisation eines Autoverleihs. Das Programm ermöglicht Mitarbeitern die Verwaltung von Autos, Buchungen und Kunden.
 
 **Installation**
 Um das Programm zu installieren, müssen Sie zuerst das Repository klonen:
