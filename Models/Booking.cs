@@ -19,7 +19,9 @@
 
         public override string ToString() => $"Id: {Id};" +
             System.Environment.NewLine + $" Kunde: {Customer};" +
+            System.Environment.NewLine +
             System.Environment.NewLine + $" Auto: {Car}; " +
+            System.Environment.NewLine +
             System.Environment.NewLine + $" Kosten: {Price.ToString()} Euro;" +
             System.Environment.NewLine + $" Gebucht von: {From} bis: {To.ToString()}; " +
             System.Environment.NewLine + $" KM gefahren: {AmountKM.ToString()}; " +
